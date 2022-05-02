@@ -12,6 +12,7 @@ const win32 = struct {
     usingnamespace @import("win32").graphics.gdi;
     usingnamespace @import("win32").graphics.dwm;
     usingnamespace @import("win32").system.threading;
+    usingnamespace @import("win32").system.console;
 };
 
 const RECT = win32.RECT;
@@ -32,6 +33,7 @@ const zones = [_]RECT {
 };
 
 pub export fn WinMainCRTStartup() callconv(@import("std").os.windows.WINAPI) void {
+    _ = win32.FreeConsole();
     registerHotKeys();
     runMessageLoop();
 }
